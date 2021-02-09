@@ -1,4 +1,5 @@
 # 100 days of code day 1
+
 x=3;
 if x==2:
     print(x);
