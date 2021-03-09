@@ -46,37 +46,31 @@ class DoublyLinkedList:
             print(node.data,end=" ")
             node = node.next
 
-def _deleteNode(head_ref, _del): 
+def _deleteNode(head, _del): 
   
     # base case  
-    if (head_ref == None or _del == None): 
+    if (head == None or _del == None): 
         return
   
     # If node to be _deleted is head node  
-    if (head_ref == _del): 
-        head_ref = _del.next
-  
-    # Change next only if node to be _deleted  
-    # is NOT the last node  
+    if (head == _del): 
+        head = _del.next
+
     if (_del.next != None): 
         _del.next.prev = _del.prev 
-  
-    # Change prev only if node to be _deleted  
-    # is NOT the first node  
+
     if (_del.prev != None): 
         _del.prev.next = _del.next
   
-    return head_ref 
-  
-# function to remove duplicates from a  
-# sorted doubly linked list  
-def removeDuplicates(head_ref): 
+    return head
+
+def removeDuplicates(head): 
   
     # if list is empty  
-    if ((head_ref) == None): 
+    if ((head) == None): 
         return None
   
-    current = head_ref 
+    current = head
     next = None
   
     # traverse the list till the last node  
@@ -84,16 +78,13 @@ def removeDuplicates(head_ref):
   
         # Compare current node with next node  
         if (current.data == current.next.data): 
-  
-            # _delete the node pointed to by 
-            # 'current.next'  
-            _deleteNode(head_ref, current.next) 
+            _deleteNode(head, current.next) 
   
         # else simply move to the next node  
         else: 
             current = current.next
       
-    return head_ref
+    return head
 
 #testing
 dlist = DoublyLinkedList()
