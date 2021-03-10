@@ -22,7 +22,6 @@ class LinkedList:
         self.head = newNode
 
     #Deleting Linked List at a given position
-
     """
     If the node to be deleted is the root, simply delete it.
     To delete a middle node, we must have a pointer to the node previous to
