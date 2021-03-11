@@ -1,102 +1,75 @@
-## Day 31 of 100 days
+## Day 32 of 100 days
 
 # Doubly Linked List
 
+# Code by Shashank Pradhan, Github - shanku01
 
-class Node:  
-    def __init__(self,data):  
-        self.data = data  
+# Python3 program to find a pair with given sum x.
+ 
+# Structure of node of doubly linked list
+class Node:
+     
+    def __init__(self, x):
+         
+        self.data = x
         self.next = None
         self.prev = None
+ 
+# Function to find pair whose sum equal to given value x.
+def pairSum(head, x):
+     
+    # Set two pointers
+    first = head
 
-def deleteNode(head, delete): 
-    # base case  
-    if (head == None or delete == None): 
-        return None
-  
-    if (head == delete): 
-        head = delete.next
-
-    # Change next only if node to be deleted  
-    if (delete.next != None): 
-        delete.next.prev = delete.prev 
-  
-    # Change prev only if node to be deleted  
-    if (delete.prev != None): 
-        delete.prev.next = delete.next
-   
-    delete = None
-    return head 
-  
-
-def deleteAllOccurOfX(head, x): 
-    # if list is empty  
-    if (head == None): 
-        return
-  
-    current = head 
-  
-    # traverse the list up to the end  
-    while (current != None): 
-  
-        # if node found   
-        if (current.data == x): 
-   
-            next = current.next #Holding next
     
-            head = deleteNode(head, current) 
-   
-            current = next #updating current
-          
-        else: 
-            current = current.next
-      
-    return head 
-   
-def push(head,new_data): 
-
-    # allocate node  
-    new_node = Node(new_data) 
-    new_node.data = new_data 
-   
-    new_node.prev = None
-    new_node.next = head 
-  
-    if (head != None): 
-        head.prev = new_node 
-  
-    head = new_node 
-    return head 
-  
-
-def printList(head): 
-    # if list is empty  
-    if (head == None): 
-        print("Dlist empty") 
-  
-    while (head != None) : 
-        print(head.data,end=" ") 
-        head = head.next
-
-#Testing
-
-head = None
-
-head = push(head, 2) 
-head = push(head, 5) 
-head = push(head, 2) 
-head = push(head, 4) 
-head = push(head, 8) 
-  
+    # To track if we find a pair or not
+    found = False
+ 
+    # The loop terminates when they don't find pair
+    while (first):
+        second = first
+        while(second):
+            if(first.data+second.data == x):
+                print("(",first.data,",",second.data,")")
+                found = True
+                first = first.next
+            second = second.next
+        first= first.next
+    # If pair is not present
+    if (found == False):
+        print("No pair found")
+ 
+# A utility function to insert a new node
+# at the beginning of doubly linked list
+def insert(head, data):
+     
+    temp = Node(data)
+     
+    if not head:
+        head = temp
+    else:
+        temp.next = head
+        head.prev = temp
+        head = temp
+         
+    return head
+ 
+# Driver code
+if __name__ == '__main__':
+     
+    head = None
+    head = insert(head, 0)
+    head = insert(head, 7)
+    head = insert(head, 1)
+    head = insert(head, 6)
+    head = insert(head, 3)
+    head = insert(head, 5)
+    head = insert(head, 4)
+    head = insert(head, 2)
     
-printList(head)
-
-print()
-  
-x = 2
-
-head = deleteAllOccurOfX(head, x) 
-
-printList(head) 
+    
+    x = 7
+ 
+    pairSum(head, x)
 
 
