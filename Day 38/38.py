@@ -1,22 +1,25 @@
-## Day 37 of 100 days of Code
+## Day 38 of 100 days of Code
 #Binary Tree
 
 """
-A tree whose elements have at most 2 children is called a binary tree.
-Since each element in a binary tree can have only 2 children,
-we typically name them the left and right child.
-"""
+Full Binary Tree A Binary Tree is a full binary tree
+if every node has 0 or 2 children.
 
-"""
-Main applications of trees include: 
-1. Manipulate hierarchical data. 
-2. Make information easy to search (see tree traversal). 
-3. Manipulate sorted lists of data. 
-4. As a workflow for compositing digital images for visual effects. 
-5. Router algorithms 
-6. Form of a multi-stage decision-making (see business chess). 
-"""
+Complete Binary Tree: A Binary Tree is a Complete Binary Tree if all
+the levels are completely filled except possibly the last level and the
+last level has all keys as left as possible.
 
+Perfect Binary Tree A Binary tree is a Perfect Binary Tree in which all
+the internal nodes have two children and all leaf nodes are at the same level.
+
+Balanced Binary Tree 
+A binary tree is balanced if the height of the tree is O(Log n) where n is the
+number of nodes.
+
+A degenerate (or pathological) tree A Tree where every internal node has one
+child.
+Such trees are performance-wise same as linked list.
+"""
 
 class Node:
     def __init__(self,data=None,right=None,left=None):
@@ -24,15 +27,56 @@ class Node:
         self.right = right
         self.data = data
 
-#Testing
+#Traversing
+def inOrder(node):
 
-leaf1 = Node(0)
-leaf2 = Node (1)
-leaf3 = Node(2)
-leaf4 = Node (3)
+    #base case
+    if(not node):
+        return
 
-node1 = Node(4,leaf1,leaf2)
-node2 = Node (5,leaf3,leaf4)
+    inOrder(node.left)
+    print(node.data,end=" ")
+    inOrder(node.right)
 
-root = Node(6,node1,node2)
+def insert(node,data):
 
+    #if node is none
+    if not node:
+        root = Node(data)
+        return
+
+    q=[]
+    q.append(node)
+
+    while(len(q)):
+        node = q[0]
+        q.pop(0)
+
+        if(not node.left):
+            node.left = Node(data)
+            break
+        else:
+            q.append(node.left)
+
+        if(not node.right):
+            node.right = Node(data)
+            break
+        else:
+            q.append(node.right)
+
+# Testing
+root = Node(10) 
+root.left = Node(11) 
+root.left.left = Node(7) 
+root.right = Node(9) 
+root.right.left = Node(15) 
+root.right.right = Node(8) 
+ 
+
+inOrder(root) 
+ 
+
+insert(root, 10) 
+
+print() 
+inOrder(root)
