@@ -1,6 +1,4 @@
-# Day 44 of 100 daysof code
-
-# Morris Traversal
+# Day 45 of 100 daysof code
 
 class Node:
     def __init__(self,data = None,left = None, right = None):
@@ -21,8 +19,7 @@ node2 = Node(5,leaf3,leaf4)
 
 root = Node(6,node1,node2)
 
-for data in morrisTraversal(root):
-    print(data,end="")
+
 
     
     
